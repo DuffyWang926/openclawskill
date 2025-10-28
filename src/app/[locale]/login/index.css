@@ -1,0 +1,31 @@
+.loginPage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding:100px 10px 200px;
+
+    .loginCon{
+      padding: 100px 20px 20px;
+      .formItem{
+        display: flex;
+        align-items: center;
+        padding:25px 10px;
+        .itemTitle{
+          padding: 0 20px 0 0;
+          min-width: 200px;
+        }
+        .itemInput{
+          display: flex;
+          flex-direction: column;
+          .error{
+            color:red;
+            font-size: 18px;
+          }
+        }
+      }
+      .submit{
+        padding:100px 0 0 0;
+      }
+    }
+  }
+  
