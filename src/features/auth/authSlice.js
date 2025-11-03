@@ -15,8 +15,15 @@ const authSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(postLogin.pending,  (s) => { s.loading = true; })
-      .addCase(postLogin.fulfilled, (s, a) => { s.loading = false; s.user = a.payload; })
-      // .addCase(postLogin.rejected,  (s, a) => { s.loading = false; s.error = a.error.message; }),
+      .addCase(postLogin.fulfilled, (state, { payload }) => {
+        const {data } = payload
+        const { isRegister, userInfo = {} } = data
+        const { id }  = userInfo
+        state.loading = false;
+        state.isRegister = isRegister;
+        state.user   = userInfo;          
+        state.userId = id;   
+        state.error  = null;
+      })
 });
-
 export default authSlice.reducer;

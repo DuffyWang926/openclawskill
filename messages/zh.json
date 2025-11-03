@@ -1,6 +1,8 @@
 {
     "common": {
       "login": "登录",
+      "company": "公司",
+      "home": "首页",
       "register": "注册",
       "tools": "工具",
       "pleaseLogin": "请登录",
@@ -10,15 +12,12 @@
       "language": "语言",
       "Chinese": "中文",
       "English": "英语",
-      "remove": "移除图片中的路人",
+      "remove": "移除",
       "erase": "擦除",
       "unwanted": "不需要的",
       "objects": "物体",
       "people": "人",
       "text": "字",
-      "inSeconds": "仅需几秒",
-      "editADOne": "只需上传图片, 选中, 擦除, 下载",
-      "editADTwo": "而且免费试用！",
       "tryNow": "免费试用",
       "privacy": "隐私政策",
       "contact": "联系我们",
@@ -37,9 +36,12 @@
       "soraHolder": "请输入sora视频的url:https://sora.chatgpt.com/p/xxxxxx ",
       "soraTip": "请输入正确的 Sora URL:https://sora.chatgpt.com/p/xxxxxx ",
       "soraTitle": "擦除sora的水印",
-      "soraTipOne": "借助先进的 AI 图像识别技术，轻松去除视频中的水印。"
+      "soraTipOne": "借助先进的 AI 图像识别技术，轻松去除视频中的水印。",
+      "remover": "擦除"
+      
     },
-    "upload": {
+    "uploader": {
+      "formatError": "仅支持 JPEG / PNG / AVIF / WebP 格式",
       "uploadPicture": "上传图片",
       "supportedFormats": "支持格式："
     },
@@ -73,5 +75,11 @@
     "msg": {
       "saveImgSuccess": "图片保存成功",
       "saveImgFailed": "保存图片失败"
+    },
+    "removePeople": {
+      "removeTitle": "移除图片中的路人仅需几秒",
+      "removeTip": "只需上传图片, 擦除, 下载",
+      "removeTipTwo": "免费试用！"
     }
+    
   }

@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "cross-env BROWSER=chrome next dev",
-    "build": "next build --webpack",
+    "build": "node scripts/generate-sitemap.js && next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
-    "@heroui/react": "^2.6.13",
+    "@ant-design/nextjs-registry": "^1.1.0",
     "@reduxjs/toolkit": "^2.9.2",
-    "framer-motion": "^12.23.24",
     "next": "^15.3.1",
     "next-intl": "^4.4.0",
     "react": "^18.3.1",
@@ -27,6 +26,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
+    "glob": "^11.0.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"

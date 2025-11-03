@@ -1,6 +1,8 @@
 {
     "common": {
       "login": "Login",
+      "company": "Company",
+      "home": "Home",
       "register": "Register",
       "tools": "Tools",
       "pleaseLogin": "Please log in.",
@@ -10,15 +12,12 @@
       "language": "Language",
       "Chinese": "Chinese",
       "English": "English",
-      "remove": "remove people from photos",
+      "remove": "remove",
       "erase": "erase",
       "unwanted": "unwanted",
       "objects": "objects",
       "people": "people",
       "text": "text",
-      "inSeconds": "in seconds",
-      "editADOne": "Your ultimate AI tool for removing unwanted people from any",
-      "editADTwo": "photo: fast, clean, and 100% free with EditPixelAI.",
       "tryNow": "Try now for free",
       "privacy": "Privacy Policy",
       "contact": "Contact Us",
@@ -32,15 +31,17 @@
       "removePeople": "remove people from photos",
       "removeWatermark": "remove watermark",
       "removeSoraWatermark": "remove sora watermark",
-      "watermarkTitle": "remove watermark from photos",
-      "watermarkTipOne": "Remove watermarks, logos, text and unwanted object from ",
+      "watermarkTitle": "remove watermark from photos in seconds!",
+      "watermarkTipOne": "Remove watermarks, logos, text and unwanted object from photos.",
       "soraHolder": "Please input the url of sora video:https://sora.chatgpt.com/p/xxxxxx ",
       "soraTip": "Please input the right url of sora video:https://sora.chatgpt.com/p/xxxxxx ",
-      "soraTitle": "remove watermark from video",
-      "soraTipOne": "fast, clean, and 100% free with EditPixelAI."
+      "soraTitle": "remove watermark from video in seconds !",
+      "soraTipOne": "fast, clean, and 100% free with EditPixelAI.",
+      "remover": "Remover"
     },
-    "upload": {
-      "uploadPicture": "uploadPicture",
+    "uploader": {
+      "formatError": "Only JPEG / PNG / AVIF / WebP are supported",
+      "uploadPicture": "upload Picture",
       "supportedFormats": "supportedFormats:"
     },
     "edit": {
@@ -73,5 +74,10 @@
     "msg": {
       "saveImgSuccess": "Picture saved successfully",
       "saveImgFailed": "Failed to save picture"
+    },
+    "removePeople": {
+      "removeTitle": "remove people from photos in seconds!",
+      "removeTip": "Your ultimate AI tool for removing unwanted people from any photo:",
+      "removeTipTwo": "fast, clean, and 100% free with EditPixelAI."
     }
   }

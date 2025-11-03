@@ -1,30 +1,22 @@
 'use client';
 
-// import NavBar from '@/components/NavBar';
-import './index.css';              // 把原 Taro 的样式拷过来即可
+import './index.css';
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { postLogin } from '@/features/auth/authThunks.js';
-import {
-  Input, 
-  // Button, 
-  Card, CardBody, Spacer,
-   Modal, ModalContent, ModalHeader, ModalBody, ModalFooter,
-   useDisclosure,
-   Spinner,
-} from '@heroui/react';
-import {Button} from '@heroui/button'; 
+import { Card, Input, Button, Space } from 'antd';
+import 'antd/dist/reset.css';
+import { useRouter } from 'next/navigation';
 const CLIENT_ID = '327783958246-h2605htmt2268qhut1nc5lugthm9ufl7.apps.googleusercontent.com';
 const REDIRECT_URI = 'https://editpixelai.com/callback';
 
 export default function LoginPage() {
-  const  t = useTranslations();
+  const t = useTranslations();
+  const router = useRouter();
   const dispatch = useDispatch();
-  const user        = useSelector((state) => state.login);
-  const isRegister  = useSelector((state) => state.login.isRegister);
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const [modalMsg, setModalMsg] = useState('');
+  const loginState       = useSelector(state => state.login);
+  const { isRegister } = loginState
 
   // 表单状态
   const [email, setEmail]           = useState('');
@@ -34,13 +26,12 @@ export default function LoginPage() {
   const [passwordError, setPasswordError] = useState('');
   const [codeError, setCodeError]   = useState('');
   const [isCode, setIsCode]         = useState(false);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isRegister) setIsCode(true);
   }, [isRegister]);
 
-  /* ===== 校验函数（原封不动） ===== */
+  /* ===== 校验 ===== */
   const validateEmail = (val) => {
     if (!val) { setEmailError(t('login.emailEmptyError')); return false; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
@@ -61,17 +52,15 @@ export default function LoginPage() {
 
   /* ===== 提交 ===== */
   const handleSubmit = async () => {
-    // Next 没有 Taro 的 router.params，用 searchParams 或路由段代替
-    // 这里先留空对象，可按实际需要改
     const type = new URLSearchParams(window.location.search).get('type') || '';
-
-    const okEmail    = validateEmail(email);
-    const okPwd      = validatePassword(password);
-    const okCode     = isCode ? validateCode(code) : true;
+    const okEmail = validateEmail(email);
+    const okPwd   = validatePassword(password);
+    const okCode  = isCode ? validateCode(code) : true;
+    console.log('password', password)
 
     if (okEmail && okPwd && okCode) {
-      setLoading(true);               // 1. 打开 Spinner
-      await dispatch(postLogin({      // 2. 调接口
+      setLoading(true);
+      const action = await dispatch(postLogin({
         email,
         pwd: password,
         emailCode: code,
@@ -79,90 +68,89 @@ export default function LoginPage() {
         failMsg: t('login.failMsg'),
         type
       }));
+      if (postLogin.fulfilled.match(action) ) {
+        const { data } = action.payload;
+        const { isRegister } = data
+        console.log('action.payload', action.payload)
+        console.log('isRegister', isRegister)
+        
+        let url = ''
+        if(type == 0){
+          url = '/remove-people-from-photos'
+        }else if(type == 1){
+          url = '/remove-watermark'
+
+        }else if(type == 2){
+          url = '/remove-sora-watermark'
+
+        }else if(type == 3){
+
+        }
+        if(!isRegister){
+          router.push(url);
+          
+        }
+      }
       setLoading(false);
-    } else {
-      // setModalMsg('请检查表单');
-      // onOpen();
     }
   };
 
   /* ===== Google 登录 ===== */
   const gotoGoogle = () => {
-    const url =
+    window.location.href =
       'https://accounts.google.com/o/oauth2/v2/auth?' +
       `client_id=${CLIENT_ID}` +
       `&redirect_uri=${REDIRECT_URI}` +
       '&response_type=code' +
       '&scope=email profile' +
       '&state=next';
-    window.location.href = url;
   };
 
   /* ===== UI ===== */
   return (
     <div className='loginPage'>
       <Card className='loginCon max-w-md w-full shadow-medium'>
-        <CardBody className='gap-4'>
+        <Space direction='vertical' size='large' className='w-full'>
           <Input
-            label={t('login.email')}
-            placeholder={t('login.pleaseEmail')}
+            placeholder={t('login.email')}
             value={email}
-            onValueChange={setEmail}
+            onChange={e => setEmail(e.target.value)}
             onBlur={() => validateEmail(email)}
-            isInvalid={!!emailError}
-            errorMessage={emailError}
+            status={emailError ? 'error' : ''}
           />
-          <Input
-            label={t('login.password')}
-            placeholder={t('login.pleasePwd')}
-            type='password'
+          {emailError && <div className='text-red-500 text-sm -mt-2'>{emailError}</div>}
+
+          <Input.Password
+            placeholder={t('login.password')}
             value={password}
-            onValueChange={setPassword}
+            onChange={e => setPassword(e.target.value)}
             onBlur={() => validatePassword(password)}
-            isInvalid={!!passwordError}
-            errorMessage={passwordError}
+            status={passwordError ? 'error' : ''}
           />
+          {passwordError && <div className='text-red-500 text-sm -mt-2'>{passwordError}</div>}
+
           {isCode && (
-            <Input
-              label={t('login.code')}
-              placeholder={t('login.pleaseCode')}
-              type='text'
-              value={code}
-              onValueChange={setCode}
-              onBlur={() => validateCode(code)}
-              isInvalid={!!codeError}
-              errorMessage={codeError}
-            />
-          )}
-          <Spacer y={2} />
-          <Button className='btn'  color='primary' onPress={handleSubmit}>
-            {t('common.login')} / {t('common.register')}
-          </Button>
-          <Button className='btn'  variant='bordered' onPress={gotoGoogle}>
-            Google Login
-          </Button>
-        </CardBody>
-      </Card>
-      <Modal isOpen={true} onOpenChange={onOpenChange} size="sm">
-        <ModalContent>
-          {(onClose) => (
             <>
-              <ModalHeader>提示</ModalHeader>
-              <ModalBody>{modalMsg}</ModalBody>
-              <ModalFooter>
-                <Button color="primary" onPress={onClose}>
-                  知道了
-                </Button>
-              </ModalFooter>
+              <Input
+                placeholder={t('login.code')}
+                value={code}
+                onChange={e => setCode(e.target.value)}
+                onBlur={() => validateCode(code)}
+                status={codeError ? 'error' : ''}
+              />
+              {codeError && <div className='text-red-500 text-sm -mt-2'>{codeError}</div>}
             </>
           )}
-        </ModalContent>
-      </Modal>
-      {loading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <Spinner size="lg" color="primary" label="正在登录..." />
-        </div>
-      )}
+
+          <Button type='primary' size='large' onClick={handleSubmit} block>
+            {t('common.login')} / {t('common.register')}
+          </Button>
+
+          <Button size='large' onClick={gotoGoogle} block>
+            Google Login
+          </Button>
+        </Space>
+      </Card>
     </div>
   );
 }

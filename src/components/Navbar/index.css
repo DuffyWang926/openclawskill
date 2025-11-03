@@ -1,0 +1,17 @@
+.navHeader {
+  .logoBox{
+    .ant-image{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .navLogo{
+        width: 40px !important;
+        height: 40px !important;
+      }
+    }
+    
+
+  }
+  
+  
+}

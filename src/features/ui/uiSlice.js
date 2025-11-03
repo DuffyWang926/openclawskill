@@ -1,33 +1,31 @@
 // features/ui/uiSlice.js
-
 import { createSlice, isRejected } from '@reduxjs/toolkit';
 
 const uiSlice = createSlice({
-    name: 'ui',
-    initialState: {
-        globalError: null, // ⬅️ 全局错误存储位置
+  name: 'ui',
+  initialState: {
+    globalError: null,
+    globalLoading: 0, // ➕ 全局 loading 计数器（0 表示未加载）
+  },
+  reducers: {
+    clearGlobalError: (state) => {
+      state.globalError = null;
     },
-    reducers: {
-        // 供 GlobalErrorNotifier 在 Modal 关闭时调用
-        clearGlobalError: (state) => {
-            state.globalError = null;
-        }
+    // ➕ 控制 loading 的两个 action
+    startLoading: (state) => {
+      state.globalLoading += 1;
     },
-    extraReducers: (builder) => {
-        // 🌟 核心：使用 addMatcher 捕获所有 Thunks 的 Rejected 状态
-        builder.addMatcher(
-            isRejected, 
-            (state, action) => {
-                console.log('ui err', action.payload)
-                // 确保 action.payload 有值（即 Thunk 中使用了 rejectWithValue）
-                const errorMessage = action.payload; 
-                if (errorMessage) {
-                    state.globalError = errorMessage; 
-                }
-            }
-        );
-    }
+    stopLoading: (state) => {
+      state.globalLoading = Math.max(0, state.globalLoading - 1);
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(isRejected, (state, action) => {
+      const errorMessage = action.payload;
+      if (errorMessage) state.globalError = errorMessage;
+    });
+  },
 });
 
-export const { clearGlobalError } = uiSlice.actions;
+export const { clearGlobalError, startLoading, stopLoading } = uiSlice.actions;
 export default uiSlice.reducer;
