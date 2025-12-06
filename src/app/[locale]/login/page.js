@@ -25,11 +25,6 @@ export default function LoginPage() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [codeError, setCodeError]   = useState('');
-  const [isCode, setIsCode]         = useState(false);
-
-  useEffect(() => {
-    if (isRegister) setIsCode(true);
-  }, [isRegister]);
 
   /* ===== 校验 ===== */
   const validateEmail = (val) => {
@@ -55,11 +50,10 @@ export default function LoginPage() {
     const type = new URLSearchParams(window.location.search).get('type') || '';
     const okEmail = validateEmail(email);
     const okPwd   = validatePassword(password);
-    const okCode  = isCode ? validateCode(code) : true;
+    const okCode  = isRegister ? validateCode(code) : true;
     console.log('password', password)
 
     if (okEmail && okPwd && okCode) {
-      setLoading(true);
       const action = await dispatch(postLogin({
         email,
         pwd: password,
@@ -91,7 +85,6 @@ export default function LoginPage() {
           
         }
       }
-      setLoading(false);
     }
   };
 
@@ -129,7 +122,7 @@ export default function LoginPage() {
           />
           {passwordError && <div className='text-red-500 text-sm -mt-2'>{passwordError}</div>}
 
-          {isCode && (
+          {isRegister && (
             <>
               <Input
                 placeholder={t('login.code')}

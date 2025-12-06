@@ -99,7 +99,5 @@ const NavbarInner = () => {
 
 /* ---------- 延迟挂载，避免 SSR 阶段使用 router ---------- */
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  return mounted ? <NavbarInner /> : null;
+  return <NavbarInner />;
 }

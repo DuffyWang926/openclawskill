@@ -31,7 +31,9 @@ export default function GlobalErrorNotifier({msg,clickConfirm}) {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    if (errorMessage) setModalOpen(true);
+    if (errorMessage) {
+      queueMicrotask(() => setModalOpen(true));
+    }
   }, [raw]);
 
   const handleClose = () => {
