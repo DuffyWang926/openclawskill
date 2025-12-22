@@ -1,0 +1,10 @@
+.editorBox {
+  margin: 50px 0 100px 0;
+    
+      
+}
+@media (min-width: 577px) {
+  .editorBox {
+    width: 700px;
+  }
+}

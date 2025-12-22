@@ -1,6 +1,8 @@
 {
     "common": {
       "login": "Login",
+      "company": "Company",
+      "home": "Home",
       "register": "Register",
       "tools": "Tools",
       "pleaseLogin": "Please log in.",
@@ -10,19 +12,17 @@
       "language": "Language",
       "Chinese": "Chinese",
       "English": "English",
-      "remove": "remove people from photos",
+      "remove": "remove",
       "erase": "erase",
       "unwanted": "unwanted",
       "objects": "objects",
       "people": "people",
       "text": "text",
-      "inSeconds": "in seconds",
-      "editADOne": "Your ultimate AI tool for removing unwanted people from any",
-      "editADTwo": "photo: fast, clean, and 100% free with EditPixelAI.",
       "tryNow": "Try now for free",
       "privacy": "Privacy Policy",
       "contact": "Contact Us",
       "service": "Terms of Service",
+      "exampleTitle": "Stunning quality",
       "privacyTxt": "Privacy Policy\nEffective date: 2025-06-25\n\nInformation we collect\n• Account data: When you register or log in, we collect your email address and a one-way encrypted password for identification and credit calculation.  \n• Image data: Uploaded images are processed in the cloud and temporarily cached for up to 24 hours, then permanently deleted.  \n• Payment data: If paid features are introduced in the future, we will collect and process your payment-method information through third-party providers (e.g., Stripe, Alipay, WeChat Pay); this platform does not store any plain-text card numbers or CVV codes.\n\nHow we use the information\n1. Create and maintain your account; 2. Calculate and display credits; 3. Provide, improve and charge for services; 4. Send service notices and invoices.\n\nCookies & local storage\nWe set essential cookies only to keep you logged in and to remember UI preferences; these data are not shared with any third party.\n\nThird-party services\nWe currently do not embed analytics, advertising or social-media pixels; any future addition will be updated on this page.\n\nChildren\nThe site is not directed to children under 13. We do not knowingly collect data from children.\n\nData retention & deletion\n• Account information: retained until you actively delete the account or the account is inactive for 3 consecutive years.  \n• Image cache: automatically deleted after 24 hours.  \n• Payment records: kept for 7 years as required by tax law, then anonymized.\n\nYour rights\nYou can view, correct or delete your account at any time in “My Account”; after deletion we will stop collecting and delete identifiable information.\n\nChanges to this policy\nMaterial changes (e.g., new data types or purposes) will be prominently announced on this page 7 days before taking effect.\n\nContact\nQuestions?Email us at:mengshikejiwang@163.com",
       "contactTxt": "Contact\nQuestions? Email us at: mengshikejiwang@163.com\nWe usually reply within 24 hours, Monday to Friday.",
       "serviceTxt": "Terms of Service\nEffective date: 2025-06-25\n\n1. Acceptance\nBy using EditPixelAI you agree to these terms. If you do not agree, please stop using the service.\n\n2. Service description\nWe provide online image-editing tools such as “person removal”. Uploaded images are processed in the cloud, temporarily cached for 24 hours and then permanently deleted.\n\n3. Copyright and license\nYou must own or have lawful rights to any image you upload. You are solely responsible for any dispute arising from copyright or third-party rights infringement.\n\n4. Prohibited conduct\n• Upload content that is pornographic, violent, hateful or illegal;\n• Reverse-engineer, scrape or attack our servers;\n• Resell or sublicense the service or its outputs.\nWe may suspend or delete your account without refund for violations.\n\n5. Credits and payments\nSign-up credits are free; additional credits must be purchased. All payments are final and non-refundable unless required by mandatory law.\n\n6. Disclaimer\nWe strive for accuracy but do not guarantee 100 % success or fitness for commercial use. Our maximum liability shall not exceed the amount you actually paid us in your most recent transaction.\n\n7. Changes to terms\nMaterial changes will be posted on this page and take effect 7 days later. Continued use constitutes acceptance.\n\n8. Termination\nYou may delete your account at any time in “My Account”; remaining credits will be forfeited and cannot be recovered.\n\n9. Governing law\nThese terms are governed by the laws of the People's Republic of China; disputes shall be submitted to the competent courts at our location.\n\n10. Contact\nEmail: mengshikejiwang@163.com",
@@ -32,15 +32,19 @@
       "removePeople": "remove people from photos",
       "removeWatermark": "remove watermark",
       "removeSoraWatermark": "remove sora watermark",
-      "watermarkTitle": "remove watermark from photos",
-      "watermarkTipOne": "Remove watermarks, logos, text and unwanted object from ",
+      "removeBackground": "remove background",
+      "watermarkTitle": "remove watermark from photos in seconds!",
+      "watermarkTipOne": "Remove watermarks, logos, text and unwanted object from photos.",
       "soraHolder": "Please input the url of sora video:https://sora.chatgpt.com/p/xxxxxx ",
       "soraTip": "Please input the right url of sora video:https://sora.chatgpt.com/p/xxxxxx ",
-      "soraTitle": "remove watermark from video",
-      "soraTipOne": "fast, clean, and 100% free with EditPixelAI."
+      "soraTitle": "remove watermark from video in seconds !",
+      "soraTipOne": "fast, clean, and 100% free with EditPixelAI.",
+      "remover": "Remover"
+
     },
-    "upload": {
-      "uploadPicture": "uploadPicture",
+    "uploader": {
+      "formatError": "Only JPEG / PNG / AVIF / WebP are supported",
+      "uploadPicture": "upload Picture",
       "supportedFormats": "supportedFormats:"
     },
     "edit": {
@@ -49,7 +53,9 @@
       "brush": "brush",
       "size": "size",
       "photo": "photo",
-      "download": "download"
+      "download": "download",
+      "manualEditing": "manualEditing"
+      
     },
     "login": {
       "email": "email:",
@@ -73,5 +79,15 @@
     "msg": {
       "saveImgSuccess": "Picture saved successfully",
       "saveImgFailed": "Failed to save picture"
+    },
+    "removePeople": {
+      "removeTitle": "remove people from photos in seconds!",
+      "removeTip": "Your ultimate AI tool for removing unwanted people from any photo:",
+      "removeTipTwo": "fast, clean, and 100% free with EditPixelAI."
+    },
+    "removeBackground": {
+      "removeTitle": "remove background from photos in seconds!",
+      "removeTip": "Your ultimate AI tool for removing background from any photo:",
+      "removeTipTwo": "fast, clean, and 100% free with EditPixelAI."
     }
   }

@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+  width: 200px;
+  height: 400px; /* 可按需调整 */
+  cursor: ew-resize;
+  user-select: none;
+  overflow: hidden;
+  border-radius: 8px;
+  margin:20px;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  pointer-events: none; /* 让鼠标事件透到下层容器 */
+}

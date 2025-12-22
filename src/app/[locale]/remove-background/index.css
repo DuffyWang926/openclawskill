@@ -1,0 +1,38 @@
+.removePeoplePage{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding:20px;
+  background: linear-gradient(45deg, #feece2, #cbbaef);
+  .removeImg{
+    width: 200px !important;
+    height: auto !important;
+  }
+  .editorBox{
+    
+    .editorBtns{
+      justify-content:center;
+       width: 100%;
+    }
+    .editorCon{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+  }
+  
+  .exempleBox{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 20px;
+  
+    }
+
+}

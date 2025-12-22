@@ -1,54 +1,64 @@
-"use client";
-import React, { useEffect } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-    Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, 
-    Button, useDisclosure 
-} from '@heroui/react';
-import { clearGlobalError } from '@/features/ui/uiSlice'; // 确保路径正确
+import { Modal, Button } from 'antd';
+import { clearGlobalError } from '@/features/ui/uiSlice';
+import { useTranslations } from 'next-intl'; // ➕
 
-// 监听全局 UI Slice 的错误路径
-const selectGlobalError = (state) => state.ui.globalError; 
+export default function GlobalErrorNotifier({msg,clickConfirm}) {
+  const dispatch = useDispatch();
+  const t = useTranslations(); // ➕
 
-export default function GlobalErrorNotifier() {
-    const dispatch = useDispatch();
-    const errorMessage = useSelector(selectGlobalError);
-    // 使用 useDisclosure 控制 Modal 状态
-    const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-    
-    // 监听 Redux 错误状态，一旦有值就打开 Modal
-    useEffect(() => {
-        if (errorMessage && !isOpen) { // 确保有错误且 Modal 未打开
-            onOpen(); 
+  const raw = useSelector(state => state.ui.globalError); // { code, message }
+  // 优先级：后端返回文案 > 网络错误 > 默认状态码文案
+
+  let errorMessage = ''
+  if(msg){
+    errorMessage = msg
+  }else{
+    if(raw){
+      let code = raw.code
+      if(raw.message){
+        errorMessage = raw.message
+      }else{
+        if(code == 500){
+          errorMessage = t('error.netError')
         }
-    }, [errorMessage, onOpen, isOpen]);
-    
-    // 处理 Modal 关闭：清除 Redux 状态中的错误
-    const handleClose = () => {
-        onClose();
-        dispatch(clearGlobalError()); 
-    };
+      }
+    }
+  }
+  const [modalOpen, setModalOpen] = useState(false);
 
-    return (
-        <Modal 
-            isOpen={isOpen} 
-            onOpenChange={handleClose} 
-            size="sm"
-            isDismissable={false} // 不允许点击背景关闭，必须点按钮
-        >
-            <ModalContent>
-                {() => (
-                    <>
-                        <ModalHeader className="text-red-500">操作失败</ModalHeader>
-                        <ModalBody>{errorMessage}</ModalBody>
-                        <ModalFooter>
-                            <Button color="danger" onPress={handleClose}>
-                                知道了
-                            </Button>
-                        </ModalFooter>
-                    </>
-                )}
-            </ModalContent>
-        </Modal>
-    );
+  useEffect(() => {
+    if (errorMessage) {
+      queueMicrotask(() => setModalOpen(true));
+    }
+  }, [raw]);
+
+  const handleClose = () => {
+    setModalOpen(false);
+    dispatch(clearGlobalError());
+  };
+  const handleConfirm = () => {
+    setModalOpen(false);
+    dispatch(clearGlobalError());
+    clickConfirm && clickConfirm();
+
+  };
+
+  return (
+    <Modal
+      open={modalOpen}
+      title=""
+      onCancel={handleClose}
+      footer={[
+        <Button key="ok" type="primary" onClick={handleConfirm}>
+          {t('common.confirm')} {/* ➕ */}
+        </Button>
+      ]}
+    >
+      {errorMessage}
+    </Modal>
+  );
 }

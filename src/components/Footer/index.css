@@ -1,0 +1,40 @@
+.footer {
+  background: #001529; 
+  color: #ffffffb3;
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: row;
+  .footLeft{
+    width: 100px;
+    margin:20px;
+  }
+  .footerRight{
+    flex:1;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin:20px;
+    .footerItem{
+      width: 400px;
+      height: auto;
+      margin:20px;
+      .itemTop{
+        font-weight: 700;
+      }
+      .itemLink{
+        cursor: pointer;
+        padding: 0 0 0 10px;
+      }
+    }
+  }
+}
+
+.app-footer a {
+  color: #ffffffb3;
+  transition: color 0.3s;
+}
+
+.app-footer a:hover {
+  color: #fff;
+}

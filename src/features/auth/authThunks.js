@@ -13,16 +13,19 @@ import { apiService } from '../../services/apiService';
 
 export const postLogin = createAsyncThunk(
   'auth/postLogin',
-  async (payload, { rejectWithValue }) => {
+  async (payload, { rejectWithValue, getState, dispatch}) => {
       // Thunk 只负责准备 URL 和 Body，以及传递 rejectWithValue
       return await apiService({
-          url: '/api/login',
+          url: '/login',
           method: 'POST',
           body: { 
               email: payload.email, 
-              pwd: payload.password 
+              pwd: payload.pwd,
+              emailCode: payload.emailCode,
           }, 
           rejectWithValue, // ⬅️ 传递给 apiService 用于错误回调
+          getState,   // ⬅️ 传进去
+        dispatch, 
       });
   }
 );

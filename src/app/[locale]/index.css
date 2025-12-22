@@ -1,0 +1,11 @@
+.homePage{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding:20px;
+    background: linear-gradient(45deg, #feece2, #cbbaef);
+    
+    
+
+}
