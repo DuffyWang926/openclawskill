@@ -59,6 +59,24 @@ const Editor = ({ imgSrc, onUpload, batchId, userId }) => {
 
   // --- 2. 初始化/更新 Canvas 上下文 ---
   // 当宽高改变时，Canvas 内部会自动重置，必须重新获取 ctx
+  const reDraw = (currentStep) => {
+    const ctx = ctxRef.current;
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvasDims.width, canvasDims.height);
+    
+    for (let i = 0; i < currentStep; i++) {
+      const path = paths[i];
+      if (path.length < 1) continue;
+      ctx.beginPath();
+      ctx.lineWidth = path[0].brushSize;
+      ctx.moveTo(path[0].x, path[0].y);
+      for (let j = 1; j < path.length; j++) {
+        ctx.lineTo(path[j].x, path[j].y);
+      }
+      ctx.stroke();
+    }
+  };
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -114,23 +132,7 @@ const Editor = ({ imgSrc, onUpload, batchId, userId }) => {
     setStep(step + 1);
   };
 
-  const reDraw = (currentStep) => {
-    const ctx = ctxRef.current;
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvasDims.width, canvasDims.height);
-    
-    for (let i = 0; i < currentStep; i++) {
-      const path = paths[i];
-      if (path.length < 1) continue;
-      ctx.beginPath();
-      ctx.lineWidth = path[0].brushSize;
-      ctx.moveTo(path[0].x, path[0].y);
-      for (let j = 1; j < path.length; j++) {
-        ctx.lineTo(path[j].x, path[j].y);
-      }
-      ctx.stroke();
-    }
-  };
+  
 
   const saveAndUpload = async () => {
     setLoading(true);
