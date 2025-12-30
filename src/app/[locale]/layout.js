@@ -13,7 +13,6 @@ export const metadata = {
   formatDetection: { telephone: false, address: false },
   appleWebApp: { capable: true, statusBarStyle: 'white' },
   other: { 'X-UA-Compatible': 'IE=edge,chrome=1' },
-  icons: [{ rel: 'icon', url: '/static/images/assets/favicon.ico' }],
   alternates: { canonical: 'https://editpixelai.com' },
 };
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });

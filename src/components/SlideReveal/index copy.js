@@ -26,25 +26,14 @@ export default function SlideReveal({ topSrc, bottomSrc, alt = '' }) {
     e.preventDefault();
     updateClip(e.touches[0].clientX);
   };
-  const handleMouseLeave = () => {
-    if (!containerRef.current) return;
-    let endClip =  clipPercent < 50 ? 0 : 100
-    setClipPercent(endClip)
-  };
-  
-  const handleTouchStart = (e) => {
-    updateClip(e.touches[0].clientX)
-   
-  };
 
   return (
     <div
       className="wrapper"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
       onTouchMove={handleTouchMove}
-      onTouchStart={handleTouchStart} 
+      onTouchStart={(e) => updateClip(e.touches[0].clientX)} // 按下即生效
     >
       {/* 下层图片 */}
       <div className="layer">

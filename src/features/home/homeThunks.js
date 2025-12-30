@@ -17,3 +17,18 @@ export const postVerify = createAsyncThunk(
       });
   }
 );
+
+export const postUaPoints = createAsyncThunk(
+  'home/postUaPoints',
+  async (payload, { rejectWithValue, getState, dispatch}) => {
+      // Thunk 只负责准备 URL 和 Body，以及传递 rejectWithValue
+      return await apiService({
+          url: '/free',
+          method: 'POST',
+          body: payload, 
+          rejectWithValue, // ⬅️ 传递给 apiService 用于错误回调
+          getState,   // ⬅️ 传进去
+        dispatch, 
+      });
+  }
+);

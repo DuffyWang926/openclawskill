@@ -3,13 +3,13 @@ import InputEditor from '@/components/InputEditor';
 import BannerCon from '@/components/BannerCon';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOriginPath, setOriginStr} from '@/features/home/homeSlice';
+import { setOriginPath, setOriginStr, setIsShowVerify, setUA} from '@/features/home/homeSlice';
 import { useTranslations } from 'next-intl';
 import './index.css';
-import { setIsShowVerify } from '@/features/home/homeSlice';
 import SlideReveal from '@/components/SlideReveal';
 import ExampleBox from '@/components/ExampleBox';
 import React, { useEffect } from 'react';
+import { getLightFingerprint } from '@/utils/getUA';
 export default function Home() {
   const t = useTranslations('removePeople');
   const router = useRouter();
@@ -17,7 +17,11 @@ export default function Home() {
   const homeState = useSelector((state) => state.home);
   const { isVerified } = homeState;
   useEffect(() => {
-    console.log('isVerified',isVerified)
+    const fetchFingerprint = async () => {
+      const data = await getLightFingerprint();
+      dispatch(setUA(data));
+    };
+    fetchFingerprint();
     if (isVerified){
       router.push('/remove-people-from-photos');
     }
@@ -52,18 +56,7 @@ export default function Home() {
     },
 
   ]
-  const exampleNode = examples.map( (v,i) =>{
-    let res = (
-      <SlideReveal
-          topSrc={v.after}
-          bottomSrc={v.before}
-          key={'hoverReveal' + i}
-          alt="compare image"
-        />
-
-    )
-    return res
-  })
+  
   let exampleBoxData = {
     title:'common.exampleTitle',
     list:examples
@@ -78,12 +71,7 @@ export default function Home() {
       />
       
       < ExampleBox {...exampleBoxData}/>
-      {/* <div className="exempleBox">
-        <h2 className="exempleTop">
-          {t('edit.download')}
-        </h2>
-        {exampleNode}
-      </div> */}
+      
       
     </div>
   );

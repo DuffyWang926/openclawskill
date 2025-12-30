@@ -6,22 +6,23 @@ import { UploadOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { useTranslations } from 'next-intl';
 import './index.css';   // 如需自定义样式可保留
 import SmallFileUploader from '@/components/SmallFileUploader'
-
+import { setOriginPath, setOriginStr } from '@/features/home/homeSlice';
+import { useDispatch, } from 'react-redux';
 const { TextArea } = Input;
 
 export default function InputEditor({ onFileChange, onEnter, str }) {
   const t = useTranslations('common');
   const [inputVal, setInputVal] = useState(str || '');
+  const dispatch = useDispatch();
 
   // 文件选择
-  const handleUpload = (info) => {
-    const file = info.file;
+  const handleUpload = (file,filePath) => {
     if (!file) return;
-    onFileChange(file);          // 保持与 Taro 版一致的回调签名
+    dispatch(setOriginPath(filePath));         // 保持与 Taro 版一致的回调签名
+    onFileChange(file); 
   };
-
-  // 发送
   const handleEnter = () => {
+    dispatch(setOriginStr(inputVal)); 
     onEnter(inputVal);
   };
 
@@ -30,7 +31,7 @@ export default function InputEditor({ onFileChange, onEnter, str }) {
       {/* 左侧上传 */}
       <div className="uploadFile">
         <SmallFileUploader 
-            onFileChange={onFileChange}
+            onFileChange={handleUpload}
             supportedFormats={['image/jpeg', 'image/png']}
           />
       </div>

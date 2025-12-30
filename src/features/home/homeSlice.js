@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { postVerify } from './homeThunks';
+import { postVerify, postUaPoints } from './homeThunks';
 const authSlice = createSlice({
   name: 'home',
   initialState: { 
@@ -8,6 +8,9 @@ const authSlice = createSlice({
     isVerified:false,
     isShowVerify:false,
     token:'',
+    canvasId:'',
+    ua:'',
+    isFree:false
   },
   reducers: {
     setOriginPath(state, action) {
@@ -25,7 +28,14 @@ const authSlice = createSlice({
       const { isShowVerify } = action.payload;
       state.isShowVerify = isShowVerify;
     },
-    
+    setUA(state, action) {
+      const { 
+        canvasId,
+        ua
+    } = action.payload;
+      state.canvasId = canvasId;
+      state.ua = ua;
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -40,7 +50,14 @@ const authSlice = createSlice({
         }
         
       })
+      .addCase(postUaPoints.pending,  (s) => { s.loading = true; })
+      .addCase(postUaPoints.fulfilled, (state, { payload }) => {
+        const { data } = payload
+        const { isSuccess } = data
+        state.isFree = isSuccess;
+      })
+      
   
 });
-export const { setOriginPath, setOriginStr, setIsVerified, setIsShowVerify } = authSlice.actions; 
+export const { setOriginPath, setOriginStr, setIsVerified, setIsShowVerify, setUA } = authSlice.actions; 
 export default authSlice.reducer;

@@ -13,6 +13,9 @@ import SlideReveal from '@/components/SlideReveal';
 import { Image, Button, message, Space } from 'antd';
 import React, { useState, useEffect } from 'react';
 import GlobalErrorNotifier from '@/components/GlobalErrorNotifier'; 
+import { postUaPoints } from '@/features/home/homeThunks.js';
+import { getLightFingerprint } from '@/utils/getUA';
+import { setUA} from '@/features/home/homeSlice';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 export default function RemovePeople() {
@@ -22,12 +25,17 @@ export default function RemovePeople() {
   const homeState = useSelector((state) => state.home);
   const editState = useSelector((state) => state.edit);
   const loginState = useSelector((state) => state.login);
-  const { originPath, originStr } = homeState;
+  const { originPath, originStr, canvasId, ua } = homeState;
   const { batchId, handlePaths, current, videoUrl } = editState;
   const { userId } = loginState;
   const [isModal, setIsModal] = useState(false);
   const [mode, setMode] = useState('chat'); 
   useEffect(() => {
+    const fetchFingerprint = async () => {
+      const data = await getLightFingerprint();
+      dispatch(setUA(data));
+    };
+    fetchFingerprint();
     dispatch(resetPath(originPath));
   }, [originPath]);
 
@@ -41,10 +49,8 @@ export default function RemovePeople() {
   const handleUpload = (originfile,filePath) => {
     dispatch(resetPath(filePath));
   };
-  const onEnter = async (str) => {
-    debugger
-    if (userId) {
-      let formData = new FormData();
+  const postImgApi = async (str, canvasId, ua) =>{
+    let formData = new FormData();
       formData.append('userId', loginState.userId);
       formData.append('editStr', str);
 
@@ -58,16 +64,30 @@ export default function RemovePeople() {
 
         formData.append('imgSrc', imgSrc);
       }
-      try {
-        await dispatch(upload({ formData }));
-        message.success('upload success');
-      } catch (e) {
-        message.error('upload failed');
-      } 
+      if(canvasId, ua){
+        formData.append('canvasId', canvasId);
+        formData.append('ua', ua);
+      }
+      await dispatch(upload({ formData }));
+
+  }
+  const onEnter = async (str) => {
+    console.log('onEnter',canvasId, ua)
+    debugger
+    if (userId) {
+      await postImgApi(str)
       
     }else{
-      setIsModal(true);
-      
+      let res = await dispatch(postUaPoints({canvasId, ua}))
+      const { data } = res.payload
+      const { isSuccess } = data
+      debugger
+      if(isSuccess){
+        await postImgApi(str, canvasId, ua)
+
+      }else{
+        setIsModal(true);
+      }
     }
     
   };

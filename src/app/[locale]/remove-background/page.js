@@ -17,6 +17,7 @@ import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 export default function RemovePeople() {
   const t = useTranslations('removeBackground');
+  const commont = useTranslations();
   const router = useRouter();
   const dispatch = useDispatch();
   const homeState = useSelector((state) => state.home);
@@ -87,6 +88,13 @@ export default function RemovePeople() {
     {
       before:"/examples/13.png",
       after:"/examples/14.png",
+    },
+    {
+      before:"/examples/15.png",
+      after:"/examples/16.png",
+    },{
+      before:"/examples/17.png",
+      after:"/examples/18.png",
     },
   ]
   const exampleNode = examples.map( (v,i) =>{
@@ -171,10 +179,10 @@ export default function RemovePeople() {
                   < Image  className='removeImg' src={ imgSrc} preview={false}/> 
                   <div className="resultFoot">
                     <Button className='blackBtn' onClick={showManualTab}>
-                      {t('edit.manualEditing')}
+                      {commont('edit.manualEditing')}
                     </Button>
                     <Button className='blackBtn' onClick={downLoadImg}>
-                      {t('edit.download')}
+                      {commont('edit.download')}
                     </Button>
                   </div>
                 </div>
@@ -201,7 +209,7 @@ export default function RemovePeople() {
       </div>
        }  
       
-      {isModal && <GlobalErrorNotifier  msg={t('common.pleaseLogin')} clickConfirm={handleConfirm} /> }
+      {isModal && <GlobalErrorNotifier  msg={commont('common.pleaseLogin')} clickConfirm={handleConfirm} /> }
     </div>
   );
 }

@@ -10,7 +10,10 @@
 !.yarn/releases
 !.yarn/versions
 
-/public/sitemap.xml
+ .env*.local
+
+# 明确忽略基础的 .env 文件（如果里面包含密钥）
+.env
 # testing
 /coverage
 

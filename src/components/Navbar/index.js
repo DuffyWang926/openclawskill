@@ -24,6 +24,7 @@ const NavbarInner = () => {
         { label: <Link href="/remove-people-from-photos">{t('tools.removePeople')}</Link>, key: '/remove-people-from-photos' },
         { label: <Link href="/remove-watermark">{t('tools.removeWatermark')}</Link>, key: '/remove-watermark' },
         { label: <Link href="/remove-sora-watermark">{t('tools.removeSoraWatermark')}</Link>, key: '/remove-sora-watermark' },
+        { label: <Link href="/remove-background">{t('tools.removeBackground')}</Link>, key: '/remove-background' },
       ],
     },
     // { label: <Link href="/about">关于</Link>, key: '/about' },
