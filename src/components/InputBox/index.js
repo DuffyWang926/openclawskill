@@ -8,7 +8,7 @@ import './index.css';   // 如需自定义样式可保留
 import GlobalErrorNotifier from '@/components/GlobalErrorNotifier'; 
 const { TextArea } = Input;
 
-export default function InputBox({ onEnter, str }) {
+export default function InputBox({ onEnter, str, holderStr }) {
   const t = useTranslations();
   const [inputVal, setInputVal] = useState(str || '');
   const [isModal, setIsModal] = useState(false);
@@ -34,7 +34,7 @@ export default function InputBox({ onEnter, str }) {
         <TextArea
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
-          placeholder={t('tools.soraHolder')}
+          placeholder={holderStr}
           autoSize={{ minRows: 2, maxRows: 6 }}
           className="inputArea"
         />

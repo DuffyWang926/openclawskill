@@ -6,14 +6,14 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import HeadScripts from '@/components/HeadScripts';
 
 export const metadata = {
-  title: 'Remove People from photos in Seconds | EditPixelAI App',
+  title: 'The OpenClaw Skills Library for Your Intelligent Agents!',
   description:
-    'AI removes unwanted people from your photos in seconds. Free online tool, no Photoshop skills required. Upload → erase → download.',
-  authors: [{ name: 'EditPixel AI', url: 'https://editpixelai.com' }],
+    'The OpenClaw Skills Library for Your Intelligent Agents!',
+  authors: [{ name: 'OpenClaw Skills Library', url: 'https://openclawskill.org' }],
   formatDetection: { telephone: false, address: false },
   appleWebApp: { capable: true, statusBarStyle: 'white' },
   other: { 'X-UA-Compatible': 'IE=edge,chrome=1' },
-  alternates: { canonical: 'https://editpixelai.com' },
+  alternates: { canonical: 'https://openclawskill.org' },
 };
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });

@@ -2,17 +2,15 @@
 
 import { useRef, useState } from 'react';
 import './index.css';
-import SlideReveal from '@/components/SlideReveal';
+import SkillCard from '@/components/SkillCard';
 import { useTranslations } from 'next-intl';
-export default function ExampleBox({ title, list }) {
+export default function ExampleBox({ title, list, tip }) {
   const t = useTranslations();
   const exampleNode = list.map( (v,i) =>{
     let res = (
-      <SlideReveal
-          topSrc={v.after}
-          bottomSrc={v.before}
-          key={'removePeoplehoverReveal' + i}
-          alt="compare image"
+      <SkillCard
+        {...v}
+          key={'SkillCard' + i}
         />
 
     )
@@ -23,6 +21,7 @@ export default function ExampleBox({ title, list }) {
         <h2 className="exempleTop">
           {t(title)}
         </h2>
+        <div className="exempleTip">{t(tip) }</div>
         <div className="exampleWrapper">
           {exampleNode}
         </div>

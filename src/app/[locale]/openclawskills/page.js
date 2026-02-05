@@ -8,7 +8,6 @@ import { resetPath  } from '@/features/edit/editSlice';
 import { upload } from '@/features/edit/editThunks.js';
 import { useTranslations } from 'next-intl';
 import './index.css';
-import SlideReveal from '@/components/SlideReveal';
 import { Image, Button, message, Space } from 'antd';
 import React, { useState, useEffect } from 'react';
 import GlobalErrorNotifier from '@/components/GlobalErrorNotifier'; 
@@ -99,18 +98,7 @@ export default function RemovePeople() {
     },
 
   ]
-  const exampleNode = examples.map( (v,i) =>{
-    let res = (
-      <SlideReveal
-          topSrc={v.after}
-          bottomSrc={v.before}
-          key={'removePeoplehoverReveal' + i}
-          alt="compare image"
-        />
-
-    )
-    return res
-  })
+  
   return (
     <div className="removePeoplePage">
       <BannerCon data={bannerData}/>
@@ -157,7 +145,6 @@ export default function RemovePeople() {
     </Button> */}
       <div className="exempleBox">
         
-        {exampleNode}
       </div>
       {isModal && <GlobalErrorNotifier  msg={t('common.pleaseLogin')} clickConfirm={handleConfirm} /> }
     </div>

@@ -11,15 +11,15 @@ export default function AppFooter() {
   // 右侧导航数据
   let list = [
     
-    {
-      title:'tools.remover',
-      navList: [
-        { key: 'tools.removePeople', href: '/remove-people-from-photos' },
-        { key: 'tools.removeWatermark', href: '/remove-watermark' },
-        { key: 'tools.removeSoraWatermark', href: '/remove-sora-watermark' },
-        { key: 'tools.removeBackground', href: '/remove-background' },
-      ]
-    },
+    // {
+    //   title:'tools.remover',
+    //   navList: [
+    //     { key: 'tools.removePeople', href: '/remove-people-from-photos' },
+    //     { key: 'tools.removeWatermark', href: '/remove-watermark' },
+    //     { key: 'tools.removeSoraWatermark', href: '/remove-sora-watermark' },
+    //     { key: 'tools.removeBackground', href: '/remove-background' },
+    //   ]
+    // },
     {
       title:'common.company',
       navList: [

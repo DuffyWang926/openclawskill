@@ -3,8 +3,10 @@
       "login": "登录",
       "company": "公司",
       "home": "首页",
+      "points": "积分",
+      
       "register": "注册",
-      "tools": "工具",
+      "browseSkills": "浏览 Skills",
       "pleaseLogin": "请登录",
       "confirm": "确定",
       "edit": "修图",
@@ -28,61 +30,13 @@
       "serviceTxt": "服务条款\n生效日期：2025-06-25\n\n1. 接受条款\n使用 EditPixelAI 即表示您同意本条款；若不同意，请停止使用。\n\n2. 功能说明\n本网站提供“图片路人擦除”等在线编辑服务。上传图片仅用于云端处理，任务完成后缓存 24 小时并自动删除。\n\n3. 版权与许可\n您必须拥有图片的合法权利。因侵犯版权或第三方权益导致的纠纷，由您自行承担全部责任。\n\n4. 禁止行为\n• 上传色情、暴力、仇恨、违法内容；\n• 逆向工程、批量爬虫、攻击服务器；\n• 转售、转租本服务或生成内容。\n违者我们有权立即停用账户且不退款。\n\n5. 积分与付费\n注册后赠送免费积分，用完后需购买。付款一旦完成，不支持退款，除非法律另有强制规定。\n\n6. 免责声明\n我们力求结果准确，但不保证 100 % 成功或适合商业用途；因使用或无法使用服务造成的任何损失，我们承担的最高责任不超过您最近一次实际支付金额。\n\n7. 条款变更\n重大变更将在页面公告 7 天后生效；继续访问即视为接受。\n\n8. 终止与注销\n您可随时在“个人中心”注销账户；注销后积分清零且不可恢复。\n\n9. 适用法律\n本条款受中华人民共和国法律管辖，争议提交我们所在地有管辖权的人民法院。\n\n10. 联系我们\n邮箱：mengshikejiwang@163.com",
       "inputHolder": "需要我怎样编辑图片？"
     },
-    "tools": {
-      "removePeople": "擦除图片的路人",
-      "removeWatermark": "擦除图片的水印",
-      "removeSoraWatermark": "擦除sora视频的水印",
-      "removeBackground": "擦除背景",
-      "watermarkTitle": "擦除图片的水印",
-      "watermarkTipOne": "借助先进的 AI 图像识别技术，轻松去除图片中的水印、标志、文字及其他不需要的元素。",
-      "soraHolder": "请输入sora视频的url:https://sora.chatgpt.com/p/xxxxxx ",
-      "soraTip": "请输入正确的 Sora URL:https://sora.chatgpt.com/p/xxxxxx ",
-      "soraTitle": "擦除sora的水印",
-      "soraTipOne": "借助先进的 AI 图像识别技术，轻松去除视频中的水印。",
-      "remover": "擦除"
-      
-    },
-    "uploader": {
-      "formatError": "仅支持 JPEG / PNG / AVIF / WebP 格式",
-      "uploadPicture": "上传图片",
-      "supportedFormats": "支持格式："
-    },
-    "edit": {
-      "undo": "撤销",
-      "redo": "回复",
-      "brush": "画笔",
-      "size": "大小",
-      "photo": "图片",
-      "download": "下载",
-      "manualEditing": "手动编辑"
-    },
-    "login": {
-      "email": "邮箱：",
-      "password": "密码：",
-      "pleaseEmail": "请输入邮箱",
-      "pleasePwd": "请输入密码",
-      "emailEmptyError": "邮箱不能为空",
-      "emailTypeError": "邮箱格式不正确",
-      "pwdEmptyError": "密码不能为空",
-      "pwdTypeError": "密码长度至少为 6 位",
-      "code": "验证码：",
-      "pleaseCode": "请输入验证码",
-      "codeEmptyError": "验证码不能为空",
-      "codeTypeError": "验证码长度是 6 位",
-      "codeMsg": "验证码已发至邮箱，请输入验证码。",
-      "failMsg": "登录失败，请检查账号密码"
-    },
-    "error": {
-      "netError": "网络错误，请重试。"
-    },
-    "msg": {
-      "saveImgSuccess": "图片保存成功",
-      "saveImgFailed": "保存图片失败"
-    },
-    "removePeople": {
-      "removeTitle": "移除图片中的路人仅需几秒",
-      "removeTip": "只需上传图片, 擦除, 下载",
-      "removeTipTwo": "免费试用！"
+    "home": {
+      "homeTitle": "OpenClaw 技能库——为您的智能体赋能！",
+      "homeTip": "用社区构建的技能，为你的 AI 智能体注入强大动力——支持 Moltbook、Telegram、SEO 等更多场景。",
+      "homeTipTwo": "想要自定义功能？只需用纯英文写一份 SKILL.md 文件即可——无需训练，无需微调。开源、零门槛。",
+      "midTitle": "精选 Skills",
+      "midTip": "精选优质内容 — 值得信赖",
+      "searchHolder": "搜索 AI Skills"
     }
     
   }

@@ -17,17 +17,9 @@ const NavbarInner = () => {
 
   const items = [
     { label: <Link href="/">{t('common.home')}</Link>, key: '/' },
-    {
-      label: t('common.tools'),
-      key: '/products',
-      children: [
-        { label: <Link href="/remove-people-from-photos">{t('tools.removePeople')}</Link>, key: '/remove-people-from-photos' },
-        { label: <Link href="/remove-watermark">{t('tools.removeWatermark')}</Link>, key: '/remove-watermark' },
-        { label: <Link href="/remove-sora-watermark">{t('tools.removeSoraWatermark')}</Link>, key: '/remove-sora-watermark' },
-        { label: <Link href="/remove-background">{t('tools.removeBackground')}</Link>, key: '/remove-background' },
-      ],
-    },
-    // { label: <Link href="/about">关于</Link>, key: '/about' },
+    { label: <Link href="/openclawskills">{t('common.browseSkills')}</Link>, key: '/openclawskills' },
+    
+   
   ];
 
   const handleClick = ({ key }) => {
